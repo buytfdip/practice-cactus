@@ -6,8 +6,15 @@ class BrownieSpider(scrapy.Spider):
 
     def parse(self,response):
         for products in response.css('div.col-xs-6.col-sm-4.categoryContainerCross'):
-            yield {
-                'name': products.css('span.catProdName::text').get(),
-                'price': products.css('span.catProdPrice').get().replace('<span class="catProdPrice">\r\n            <span>\r\n            \r\n            \r\n                    $<span>','').replace('</span>\r\n                \r\n            \r\n        </span>\r\n    </span>',''),
-                'link': products.css('a').attrib['href'] 
-            }
+            if len(products.css('span.catProdPrice').get().replace('<span class="catProdPrice">\r\n            <span>\r\n            \r\n            \r\n                    $<span>','').replace('</span>\r\n                \r\n            \r\n        </span>\r\n    </span>','')) == 5:
+                yield {
+                    'name': products.css('span.catProdName::text').get(),
+                    'price': products.css('span.catProdPrice').get().replace('<span class="catProdPrice">\r\n            <span>\r\n            \r\n            \r\n                    $<span>','').replace('</span>\r\n                \r\n            \r\n        </span>\r\n    </span>',''),
+                    'link': products.css('a').attrib['href'], 
+                }
+            else:
+                yield {
+                    'name': products.css('span.catProdName::text').get(),
+                    'price': 'Special Sale Price',
+                    'link': products.css('a').attrib['href'], 
+                }                
