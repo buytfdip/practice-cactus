@@ -1,6 +1,7 @@
-#CSS Seletors
+##CSS Selectors
 
-next_page = response.css('a[aria-label="Navigate to page 2"]::attr(href)').get()
+#cat pag number to end of url to force pagination
+next_page = r'https://www.backmarket.com/en-us/l/smartphones/0744fd27-8605-465d-8691-3b6dffda5969?page=' + str(PhonesSpider.count)
 
 items = response.css('a[class="focus:outline-none group md:box-border relative"]')
 
