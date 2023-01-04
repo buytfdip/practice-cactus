@@ -17,4 +17,4 @@ class BrownieSpider(scrapy.Spider):
                     'Name': products.css('span.catProdName::text').get(),
                     'Price': 'See Site for Sale Price',
                     'Link': 'https://www.brownies.com/food-gifts/bite-size-treats'+products.css('a').attrib['href'], 
-                }                
+                }
