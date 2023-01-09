@@ -1,2 +1,4 @@
-# practice-cactus
-My Linux SQL and Bash for Data Engineering Sandbox
+# web-scraping-project
+
+
+Basic pythonic web scraper using Scrapy and SqLite DB.
